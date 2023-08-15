@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://crgckpoi7oj2f"]
+
+[ext_resource type="Script" path="res://porte.gd" id="1_0j4v3"]
+[ext_resource type="Texture2D" uid="uid://bru7xwnvm7mt8" path="res://Assets/Sunny-land-assets-files/PNG/environment/props/door.png" id="1_kry05"]
+[ext_resource type="Texture2D" uid="uid://kdh0j45ufhdf" path="res://Assets/Sunny-land-assets-files/PNG/environment/props/door-opened.png" id="2_12fp1"]
+[ext_resource type="Texture2D" uid="uid://1cld0sodu3hp" path="res://Assets/Sunny-land-assets-files/PNG/environment/props/house.png" id="2_srkla"]
+[ext_resource type="AudioStream" uid="uid://dekkwui450k6r" path="res://Assets/sounds/doorOpen_1.ogg" id="4_hvhoq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3r3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kry05")
+}],
+"loop": true,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_12fp1")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s3tp"]
+size = Vector2(20, 32)
+
+[node name="porte" type="Node2D"]
+script = ExtResource("1_0j4v3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, -38)
+texture = ExtResource("2_srkla")
+
+[node name="TimerDoor" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimatedPorte" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3r3f")
+animation = &"close"
+frame_progress = 0.452915
+
+[node name="DoorAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hvhoq")
+
+[node name="porteZone" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porteZone"]
+shape = SubResource("RectangleShape2D_5s3tp")
+debug_color = Color(0.866667, 0.32549, 0.380392, 0.419608)
+
+[connection signal="timeout" from="TimerDoor" to="." method="_on_timer_door_timeout"]
+[connection signal="body_entered" from="porteZone" to="." method="_on_porte_zone_body_entered"]

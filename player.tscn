@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://bw0clvq12j06f"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_bl6hm"]
+[ext_resource type="Texture2D" uid="uid://u62iyrcecgi6" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/idle/player-idle-1.png" id="1_jlr7d"]
+[ext_resource type="Texture2D" uid="uid://cp5vpylfrnjrg" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/hurt/player-hurt-1.png" id="2_5a3f1"]
+[ext_resource type="Texture2D" uid="uid://b2vfmaptmdw75" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/idle/player-idle-2.png" id="2_hiyb5"]
+[ext_resource type="Texture2D" uid="uid://bfk5tbflt6luf" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/hurt/player-hurt-2.png" id="3_ckygx"]
+[ext_resource type="Texture2D" uid="uid://dxf5a0det3c4a" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/idle/player-idle-3.png" id="3_n64mh"]
+[ext_resource type="Texture2D" uid="uid://bv7yxid5ganch" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/idle/player-idle-4.png" id="4_qgfow"]
+[ext_resource type="Texture2D" uid="uid://bfqiab5d7rrxa" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/jump/player-jump-1.png" id="8_0y7qq"]
+[ext_resource type="Texture2D" uid="uid://bdf4onhw4pc3j" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/jump/player-jump-2.png" id="9_d4ufo"]
+[ext_resource type="Texture2D" uid="uid://4ycdmdanbygk" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-1.png" id="10_lj641"]
+[ext_resource type="Texture2D" uid="uid://soohw243k6dc" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-2.png" id="11_47uuq"]
+[ext_resource type="Texture2D" uid="uid://345eex2qtid7" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-3.png" id="12_xxrrw"]
+[ext_resource type="Texture2D" uid="uid://d7cf4b10klvk" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-4.png" id="13_ds8h7"]
+[ext_resource type="Texture2D" uid="uid://rl6sv7hesn3d" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-5.png" id="14_6pkju"]
+[ext_resource type="Texture2D" uid="uid://bc51jb0c2q2nh" path="res://Assets/Sunny-land-assets-files/PNG/sprites/player/run/player-run-6.png" id="15_da36w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hrydy"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wptle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5a3f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ckygx")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_d4ufo")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jlr7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hiyb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n64mh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qgfow")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0y7qq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_lj641")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_47uuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xxrrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ds8h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6pkju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_da36w")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 94
+script = ExtResource("1_bl6hm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_hrydy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_wptle")
+animation = &"idle"
+frame_progress = 0.93055
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+zoom = Vector2(1.6, 1.6)
+limit_left = 200
+limit_top = 0
+limit_right = 2390
+limit_bottom = 410
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_right_margin = 0.3
+editor_draw_limits = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

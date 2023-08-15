@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://b6qfvdimrcxsx"]
+
+[ext_resource type="Texture2D" uid="uid://b1yiml56n0420" path="res://Assets/Sunny-land-assets-files/PNG/spritesheets/enemy-deadth.png" id="1_1a3br"]
+[ext_resource type="Texture2D" uid="uid://5btyeffxm11k" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-1.png" id="2_jnoub"]
+[ext_resource type="Texture2D" uid="uid://ik8057gtpbgx" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-2.png" id="3_jsuj8"]
+[ext_resource type="Texture2D" uid="uid://cbxwmwvtf1s41" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-3.png" id="4_61pkj"]
+[ext_resource type="Texture2D" uid="uid://cpuptt0wophnv" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-4.png" id="5_u83kv"]
+[ext_resource type="Texture2D" uid="uid://b3gctv83i536h" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-5.png" id="6_434pt"]
+[ext_resource type="Texture2D" uid="uid://c7ucekhd1o45w" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-6.png" id="7_5ql5c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3syv"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rtc7"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieixu"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3mi6"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeema"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(160, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4xji"]
+atlas = ExtResource("1_1a3br")
+region = Rect2(200, 0, 40, 41)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3syv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rtc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieixu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3mi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeema")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4xji")
+}],
+"loop": false,
+"name": &"enemydead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jnoub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jsuj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_61pkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u83kv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_434pt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5ql5c")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

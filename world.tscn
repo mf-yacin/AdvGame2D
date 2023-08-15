@@ -1,0 +1,267 @@
+[gd_scene load_steps=23 format=3 uid="uid://d27mtk8op7gor"]
+
+[ext_resource type="Texture2D" uid="uid://uhyp215mb0ak" path="res://Assets/bg/sky.png" id="1_c4jvv"]
+[ext_resource type="TileSet" uid="uid://d4nq8ei35t58x" path="res://worldTiles.tres" id="1_dx62m"]
+[ext_resource type="PackedScene" uid="uid://bw0clvq12j06f" path="res://player/player.tscn" id="1_nsofd"]
+[ext_resource type="Texture2D" uid="uid://62sdvdjlh3pj" path="res://Assets/bg/sea.png" id="2_ibbca"]
+[ext_resource type="TileSet" uid="uid://d3hhk4ws75qse" path="res://worldTilesOneWay.tres" id="2_tnf3u"]
+[ext_resource type="Texture2D" uid="uid://nm3uaubmbogu" path="res://Assets/bg/clouds.png" id="2_v6nmu"]
+[ext_resource type="PackedScene" uid="uid://xtwchg752ytm" path="res://coin.tscn" id="4_aiuhp"]
+[ext_resource type="Script" path="res://HUD.gd" id="5_3dnib"]
+[ext_resource type="PackedScene" uid="uid://eldjat71cy8f" path="res://enemy/enemy.tscn" id="6_1y857"]
+[ext_resource type="FontFile" uid="uid://yyu5uuho8n23" path="res://Assets/fonts/Caprasimo-Regular.ttf" id="6_posup"]
+[ext_resource type="Texture2D" uid="uid://ctyul08om37r5" path="res://Assets/heart/hud_heartFull.png" id="7_fs204"]
+[ext_resource type="Texture2D" uid="uid://c605g8w0ec53d" path="res://Assets/heart/hud_heartEmpty.png" id="8_j2y4r"]
+[ext_resource type="AudioStream" uid="uid://swpbcx777ol6" path="res://Assets/Sunny-land-assets-files/Sound/platformer_level03_loop_modifier.ogg" id="8_q8pyf"]
+[ext_resource type="Texture2D" uid="uid://opdg1riocemh" path="res://Assets/Fruits/Bananas(IDLE).png" id="10_2usly"]
+[ext_resource type="PackedScene" uid="uid://crgckpoi7oj2f" path="res://porte.tscn" id="12_8ko4h"]
+[ext_resource type="PackedScene" uid="uid://dm53ffflcirso" path="res://crack.tscn" id="13_3hvc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7rc"]
+size = Vector2(112, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy0pn"]
+size = Vector2(96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjrt4"]
+size = Vector2(2225, 36)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyy21"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.219608)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_3aydm"]
+font_size = 32
+font_color = Color(1, 0.796078, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfyx6"]
+font = ExtResource("6_posup")
+font_size = 32
+font_color = Color(1, 0.956863, 0.858824, 1)
+
+[node name="World" type="Node2D"]
+position = Vector2(1, -1)
+metadata/_edit_horizontal_guides_ = []
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-52, 156)
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(448, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
+position = Vector2(221, 126)
+scale = Vector2(5.42857, 2)
+texture = ExtResource("1_c4jvv")
+
+[node name="mount" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(544, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/mount"]
+position = Vector2(212, 252)
+texture = ExtResource("2_v6nmu")
+
+[node name="sea" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-52, 156)
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(336, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sea"]
+position = Vector2(218, 254)
+scale = Vector2(4.07143, 1)
+texture = ExtResource("2_ibbca")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, -1)
+tile_set = ExtResource("1_dx62m")
+format = 2
+layer_0/tile_data = PackedInt32Array(1441816, 196610, 1, 1441817, 196610, 1, 1441818, 196610, 1, 1441819, 196610, 1, 1441820, 196610, 1, 1441821, 196610, 1, 1441822, 196610, 1, 1441823, 196610, 1, 1441815, 196610, 1, 1441814, 196610, 1, 1441813, 196610, 1, 1441812, 196610, 1, 1441811, 196610, 1, 1441810, 196610, 1, 1441809, 196610, 1, 1441808, 327682, 1, 1245212, 1245186, 14, 1114151, 1245186, 14, 1114150, 1114114, 14, 1114149, 983042, 14, 1114146, 1245186, 14, 1114145, 1114114, 14, 1114144, 1114114, 14, 1114143, 983042, 14, 1245211, 1114114, 14, 1245210, 983042, 14, 786465, 983042, 14, 786466, 1114114, 14, 786467, 1114114, 14, 786468, 1114114, 14, 786469, 1114114, 14, 786470, 1114114, 14, 589836, 327682, 3, 786471, 1245186, 14, -131060, 327682, 3, -196596, 327682, 3, -262132, 196610, 3, 1441804, 327682, 3, 1376268, 327682, 3, 1310732, 327682, 3, 1245196, 327682, 3, 1179660, 327682, 3, 1114124, 327682, 3, 1048588, 327682, 3, 983052, 327682, 3, 917516, 327682, 3, 851980, 327682, 3, 786444, 327682, 3, 720908, 327682, 3, 655372, 327682, 3, 1441807, 196610, 1, 1441806, 196610, 1, 1441805, 65538, 1, 524300, 327682, 3, 458764, 327682, 3, 393228, 327682, 3, 327692, 327682, 3, 262156, 327682, 3, 196620, 327682, 3, 131084, 327682, 3, 65548, 327682, 3, 12, 327682, 3, -65524, 327682, 3, 1048618, 983042, 14, 1048619, 1114114, 14, 1048620, 1114114, 14, 1048621, 1114114, 14, 1048622, 1114114, 14, 1048623, 1245186, 14, 917556, 1114114, 14, 917555, 983042, 14, 1179704, 1114114, 14, 1179703, 983042, 14, 1048636, 983042, 14, 1048637, 1245186, 14, 1441854, 196610, 1, 1441855, 196610, 1, 1441856, 196610, 1, 1441857, 196610, 1, 1441858, 196610, 1, 1441859, 196610, 1, 1441860, 196610, 1, 1441861, 196610, 1, 1441862, 196610, 1, 1441863, 196610, 1, 1441864, 196610, 1, 1441865, 196610, 1, 1310797, 1114114, 14, 1310798, 1114114, 14, 1310799, 1114114, 14, 1310800, 1245186, 14, 1245264, 655362, 10, 1245265, 720898, 10, 1310808, 983042, 14, 1310809, 1114114, 14, 1310796, 983042, 14, 1310812, 1245186, 14, 1245272, 655362, 10, 1310811, 1114114, 14, 1310810, 1114114, 14, 917557, 1245186, 14, 1179705, 1114114, 14, 1179706, 1245186, 14, 1376328, 65538, 7, 1376327, 65538, 7, 1376322, 65538, 7, 1245263, 65538, 7, 1245273, 65538, 7, 983086, 65538, 7, 983085, 65538, 7, 720930, 65538, 7, 720932, 65538, 7, 1048609, 65538, 7, 1179702, 720898, 7, 1048624, 589826, 7, 1310801, 589826, 7, 1310807, 720898, 7, 1441888, 327682, 1, 1441889, 196610, 1, 1441890, 196610, 1, 1441891, 196610, 1, 1441892, 196610, 1, 1441893, 196610, 1, 1441894, 65538, 1, 1441895, 327682, 1, 1179749, 65538, 5, 1114213, 65538, 3, 1048677, 65538, 3, 983141, 65538, 3, 852069, 65538, 3, 917605, 65538, 3, 786533, 65538, 3, 1114214, 458754, 5, 1114215, 524290, 5, 1114216, 589826, 5, 1310826, 655362, 3, 1310827, 720898, 3, 786534, 327682, 3, 917609, 589826, 1, 917610, 655362, 1, 917611, 720898, 1, 655462, 1441794, 4, 720998, 458754, 5, 720997, 65538, 3, 655461, 327682, 1, 655460, 1114114, 14, 655459, 1114114, 14, 655458, 983042, 14, 720999, 524290, 5, 721000, 589826, 5, 1179750, 327682, 5, 852070, 327682, 3, 917606, 327682, 3, 983142, 327682, 3, 1048678, 196610, 5, 852075, 65538, 3, 786539, 65538, 3, 721003, 65538, 3, 655467, 1310722, 4, 655468, 1114114, 14, 655469, 1114114, 14, 655470, 1114114, 14, 655471, 1114114, 14, 655473, 1114114, 14, 655472, 1114114, 14, 655474, 1114114, 14, 655475, 1114114, 14, 655476, 1441794, 4, 721012, 458754, 5, 721013, 524290, 5, 721014, 589826, 5, 1441923, 196610, 1, 1441924, 196610, 1, 1441925, 196610, 1, 1441926, 327682, 1, 786548, 327682, 3, 852084, 327682, 3, 917620, 458754, 3, 983156, 327682, 3, 1048692, 327682, 3, 1114228, 327682, 3, 1179764, 458754, 5, 1048683, 65538, 3, 983147, 65538, 3, 1376363, 65538, 3, 1441899, 65538, 3, 1507435, 65538, 3, 1572971, 65538, 3, 1245300, 327682, 3, 1310836, 327682, 3, 1376372, 327682, 3, 1441908, 327682, 3, 1507444, 327682, 3, 1572980, 327682, 3, 1638516, 327682, 3, 1704052, 327682, 3, 1638507, 65538, 3, 1704043, 65538, 3, 1769579, 65538, 3, 1769588, 327682, 3, 983146, 720898, 7, 786535, 589826, 7, 1376362, 720898, 7, 1245291, 65538, 5, 1179755, 65538, 5, 1114219, 65538, 5, 1441927, 196610, 1, 1441928, 196610, 1, 1441929, 196610, 1, 1441930, 196610, 1, 1441931, 196610, 1, 1441932, 196610, 1, 1441933, 196610, 1, 1441934, 196610, 1, 1441935, 196610, 1, 1441936, 196610, 1, 1441937, 196610, 1, 1441938, 196610, 1, 1441939, 196610, 1, 1441940, 196610, 1, 1441941, 196610, 1, 1441942, 196610, 1, 1441943, 327682, 1, 1179766, 589826, 5, 1441914, 65538, 1, 1441915, 196610, 1, 1376379, 655362, 10, 1376380, 720898, 10, 1376383, 720898, 10, 1441913, 327682, 1, 1245268, 720898, 10, 1245271, 720898, 10, 1376386, 720898, 10, 1376387, 655362, 10, 917621, 524290, 3, 1179765, 524290, 5, 983157, 589826, 7, 1310837, 589826, 7, 1376378, 65538, 7, 1376390, 65538, 7, 1376391, 65538, 7, 1376389, 65538, 7, 1376388, 65538, 7, 852089, 983042, 14, 852090, 1114114, 14, 852091, 1245186, 14, 1310840, 983042, 14, 1310841, 1245186, 14)
+
+[node name="TileMapOneWay" type="TileMap" parent="."]
+tile_set = ExtResource("2_tnf3u")
+format = 2
+layer_0/tile_data = PackedInt32Array(917532, 1114114, 7, 917534, 1114114, 7, 917536, 1245186, 7, 917535, 1114114, 7, 917533, 1114114, 7, 917531, 983042, 7, 720951, 1114114, 7, 720950, 1114114, 7, 720949, 1114114, 7, 720948, 983042, 7, 720952, 1114114, 7, 720953, 1114114, 7, 720954, 983042, 7)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMapOneWay"]
+collision_layer = 2
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapOneWay/StaticBody2D"]
+position = Vector2(888, 184)
+shape = SubResource("RectangleShape2D_tc7rc")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TileMapOneWay/StaticBody2D"]
+position = Vector2(480, 232)
+shape = SubResource("RectangleShape2D_iy0pn")
+one_way_collision = true
+
+[node name="crack" parent="." instance=ExtResource("13_3hvc8")]
+position = Vector2(1574, 151)
+metadata/_edit_group_ = true
+
+[node name="porte" parent="." instance=ExtResource("12_8ko4h")]
+position = Vector2(2334, 334)
+
+[node name="player" parent="." instance=ExtResource("1_nsofd")]
+position = Vector2(247, 345)
+
+[node name="fallzone" type="Area2D" parent="."]
+position = Vector2(505, 401)
+collision_layer = 8
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fallzone"]
+position = Vector2(790.5, -8)
+shape = SubResource("RectangleShape2D_yjrt4")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_3dnib")
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 305.0
+offset_bottom = 65.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyy21")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 57.0
+offset_bottom = 64.0
+texture = ExtResource("10_2usly")
+
+[node name="x" type="Label" parent="HUD"]
+offset_left = 53.0
+offset_top = 12.0
+offset_right = 81.0
+offset_bottom = 60.0
+text = "x"
+label_settings = SubResource("LabelSettings_3aydm")
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 80.0
+offset_top = 18.0
+offset_right = 122.0
+offset_bottom = 66.0
+text = "##"
+label_settings = SubResource("LabelSettings_cfyx6")
+
+[node name="HeartsFull" type="TextureRect" parent="HUD"]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 287.0
+offset_bottom = 61.0
+texture = ExtResource("7_fs204")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="HeartsEmpty" type="TextureRect" parent="HUD"]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 287.0
+offset_bottom = 61.0
+texture = ExtResource("8_j2y4r")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="exit" type="Button" parent="HUD"]
+offset_left = 311.0
+offset_top = 15.0
+offset_right = 348.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.654902, 0.509804, 0.584314, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.113725, 0.172549, 1)
+theme_override_fonts/font = ExtResource("6_posup")
+theme_override_font_sizes/font_size = 26
+text = "x"
+flat = true
+
+[node name="enemies" type="Node2D" parent="."]
+position = Vector2(551, 265)
+
+[node name="enemy" parent="enemies" instance=ExtResource("6_1y857")]
+position = Vector2(144, -32)
+
+[node name="enemy2" parent="enemies" instance=ExtResource("6_1y857")]
+position = Vector2(48, -88)
+enemyDirection = 1
+
+[node name="enemy3" parent="enemies" instance=ExtResource("6_1y857")]
+position = Vector2(605, 62)
+enemyDirection = 1
+
+[node name="enemy4" parent="enemies" instance=ExtResource("6_1y857")]
+position = Vector2(1078, 62)
+enemyDirection = 1
+
+[node name="enemy5" parent="enemies" instance=ExtResource("6_1y857")]
+position = Vector2(1222, -130)
+enemyDirection = 1
+
+[node name="AllCoins" type="Node2D" parent="."]
+
+[node name="coin 1" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(456, 297)
+metadata/_edit_group_ = true
+
+[node name="coin 2" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(1826, 147)
+metadata/_edit_group_ = true
+
+[node name="coin 3" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(455, 217)
+metadata/_edit_group_ = true
+
+[node name="coin 4" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(615, 185)
+metadata/_edit_group_ = true
+
+[node name="coin 5" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(869, 164)
+metadata/_edit_group_ = true
+
+[node name="coin 6" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(551, 265)
+metadata/_edit_group_ = true
+
+[node name="coin 7" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(1659, 259)
+metadata/_edit_group_ = true
+
+[node name="coin 8" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(719, 249)
+metadata/_edit_group_ = true
+
+[node name="coin 9" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(887, 273)
+metadata/_edit_group_ = true
+
+[node name="coin 10" parent="AllCoins" instance=ExtResource("4_aiuhp")]
+position = Vector2(967, 241)
+metadata/_edit_group_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_q8pyf")
+volume_db = -4.0
+autoplay = true
+
+[connection signal="door_is_opened" from="crack" to="porte" method="_on_crack_door_is_opened"]
+[connection signal="body_entered" from="fallzone" to="player" method="_on_fallzone_body_entered"]
+[connection signal="pressed" from="HUD/exit" to="HUD" method="_on_exit_pressed"]
+[connection signal="coins_collected" from="AllCoins/coin 1" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 2" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 3" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 4" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 5" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 6" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 7" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 8" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 9" to="HUD" method="_on_coins_collected"]
+[connection signal="coins_collected" from="AllCoins/coin 10" to="HUD" method="_on_coins_collected"]

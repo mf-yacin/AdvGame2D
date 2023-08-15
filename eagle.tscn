@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwuo8e4hw07j1"]
+
+[ext_resource type="Texture2D" uid="uid://b3kskjg2oqj2l" path="res://Assets/Sunny-land-assets-files/PNG/sprites/eagle/eagle-attack-1.png" id="1_3q5gl"]
+[ext_resource type="Script" path="res://enemy/eagle.gd" id="1_4jiex"]
+[ext_resource type="Texture2D" uid="uid://cs1x7oqh7a3lw" path="res://Assets/Sunny-land-assets-files/PNG/sprites/eagle/eagle-attack-2.png" id="2_32x0d"]
+[ext_resource type="Texture2D" uid="uid://d28k6q4jn71vq" path="res://Assets/Sunny-land-assets-files/PNG/sprites/eagle/eagle-attack-3.png" id="3_3mrtw"]
+[ext_resource type="Texture2D" uid="uid://cxiqsaw0ubsrs" path="res://Assets/Sunny-land-assets-files/PNG/sprites/eagle/eagle-attack-4.png" id="4_7u5sb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lpsa"]
+radius = 4.0
+height = 24.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvprf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3q5gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_32x0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3mrtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7u5sb")
+}],
+"loop": true,
+"name": &"anim_eagle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8vjvq"]
+radius = 6.0
+
+[node name="eagle" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_4jiex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5lpsa")
+debug_color = Color(0.890196, 0.470588, 0.12549, 0.419608)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rvprf")
+animation = &"anim_eagle"
+autoplay = "anim_eagle"
+frame = 3
+frame_progress = 0.435868
+
+[node name="eagle_hit" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eagle_hit"]
+position = Vector2(-2, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8vjvq")
+
+[connection signal="body_entered" from="eagle_hit" to="." method="_on_eagle_hit_body_entered"]

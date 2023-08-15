@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://eldjat71cy8f"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_eqsxq"]
+[ext_resource type="SpriteFrames" uid="uid://b6qfvdimrcxsx" path="res://enemy/enemy.tres" id="2_hhipm"]
+[ext_resource type="Script" path="res://enemy/hitzone.gd" id="8_dgerx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbbra"]
+size = Vector2(15, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyns"]
+size = Vector2(21, 12)
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_eqsxq")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 7)
+shape = SubResource("RectangleShape2D_hbbra")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_hhipm")
+animation = &"enemydead"
+autoplay = "move"
+frame = 5
+frame_progress = 1.0
+
+[node name="floor_checker" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+collision_mask = 2
+
+[node name="hitzone" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 33
+script = ExtResource("8_dgerx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitzone"]
+position = Vector2(-3.5, 7)
+shape = SubResource("RectangleShape2D_6wyns")
+debug_color = Color(0.890196, 0.6, 0.701961, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="body_entered" from="hitzone" to="." method="_on_hitzone_body_entered"]
+[connection signal="body_entered" from="hitzone" to="hitzone" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

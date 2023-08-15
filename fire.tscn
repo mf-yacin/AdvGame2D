@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://yc8v0r41fdhg"]
+
+[ext_resource type="Texture2D" uid="uid://ealyan8fq7g5" path="res://Assets/fire/On (16x32).png" id="1_rirxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fymx"]
+size = Vector2(14, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_celjl"]
+atlas = ExtResource("1_rirxj")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r6t1"]
+atlas = ExtResource("1_rirxj")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjabc"]
+atlas = ExtResource("1_rirxj")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xoo5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_celjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r6t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjabc")
+}],
+"loop": true,
+"name": &"fire_anim",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_23ukm"]
+offsets = PackedFloat32Array(0.0377358, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qsvv4"]
+gradient = SubResource("Gradient_23ukm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.883191, 0.122507)
+
+[node name="fire" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_1fymx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xoo5q")
+animation = &"fire_anim"
+autoplay = "fire_anim"
+frame = 1
+frame_progress = 0.952318
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, -6)
+scale = Vector2(4, 4)
+color = Color(1, 1, 0.392157, 1)
+energy = 1.2
+shadow_enabled = true
+shadow_filter_smooth = 36.3
+texture = SubResource("GradientTexture2D_qsvv4")
+texture_scale = 1.3

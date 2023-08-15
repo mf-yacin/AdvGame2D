@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://dn4a30mh7umme"]
+
+[ext_resource type="Texture2D" uid="uid://b3rqctayhkye0" path="res://Assets/long_metal/long_metal_spike_01.png" id="1_ynkvs"]
+[ext_resource type="Texture2D" uid="uid://bmqmayao7vlmj" path="res://Assets/long_metal/long_metal_spike_02.png" id="2_mwpjh"]
+[ext_resource type="Texture2D" uid="uid://d3ma53donhl5v" path="res://Assets/long_metal/long_metal_spike_03.png" id="3_kkjpf"]
+[ext_resource type="Texture2D" uid="uid://c6i36etde2hw6" path="res://Assets/long_metal/long_metal_spike_04.png" id="4_oft0h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rryve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ynkvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mwpjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kkjpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oft0h")
+}],
+"loop": false,
+"name": &"spikeAnim",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gk3s1"]
+resource_name = "hit_spike"
+length = 4.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 2, 2.5, 3, 3.5, 4)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_j0coa"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulxwm"]
+_data = {
+"RESET": SubResource("Animation_j0coa"),
+"hit_spike": SubResource("Animation_gk3s1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opsmo"]
+size = Vector2(20, 50)
+
+[node name="spikeland" type="Area2D"]
+collision_layer = 64
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rryve")
+animation = &"spikeAnim"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "hit_spike"
+libraries = {
+"": SubResource("AnimationLibrary_ulxwm")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_opsmo")
+disabled = true

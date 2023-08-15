@@ -1,0 +1,169 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgto1om7ykd46"]
+
+[ext_resource type="Script" path="res://saw.tres.gd" id="1_08g13"]
+[ext_resource type="SpriteFrames" uid="uid://bgjxmr1fw8pm0" path="res://saw.tres" id="2_6tokq"]
+[ext_resource type="Texture2D" uid="uid://samnmxe8vdk7" path="res://Assets/Saw/Chain.png" id="3_x05on"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2x176"]
+radius = 19.0263
+
+[sub_resource type="Animation" id="Animation_df684"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_cpbai"]
+resource_name = "saw_motion"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -79, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k15ai"]
+_data = {
+"RESET": SubResource("Animation_df684"),
+"saw_motion": SubResource("Animation_cpbai")
+}
+
+[node name="saw" type="Node2D"]
+script = ExtResource("1_08g13")
+
+[node name="chain" type="Node2D" parent="."]
+
+[node name="chaine" type="Sprite2D" parent="chain"]
+texture = ExtResource("3_x05on")
+
+[node name="chaine2" type="Sprite2D" parent="chain"]
+position = Vector2(0, -4)
+texture = ExtResource("3_x05on")
+
+[node name="chaine3" type="Sprite2D" parent="chain"]
+position = Vector2(0, -8)
+texture = ExtResource("3_x05on")
+
+[node name="chaine4" type="Sprite2D" parent="chain"]
+position = Vector2(0, -11)
+texture = ExtResource("3_x05on")
+
+[node name="chaine5" type="Sprite2D" parent="chain"]
+position = Vector2(0, -15)
+texture = ExtResource("3_x05on")
+
+[node name="chaine6" type="Sprite2D" parent="chain"]
+position = Vector2(0, -19)
+texture = ExtResource("3_x05on")
+
+[node name="chaine7" type="Sprite2D" parent="chain"]
+position = Vector2(0, -23)
+texture = ExtResource("3_x05on")
+
+[node name="chaine8" type="Sprite2D" parent="chain"]
+position = Vector2(0, -27)
+texture = ExtResource("3_x05on")
+
+[node name="chaine9" type="Sprite2D" parent="chain"]
+position = Vector2(0, -31)
+texture = ExtResource("3_x05on")
+
+[node name="chaine10" type="Sprite2D" parent="chain"]
+position = Vector2(0, -34)
+texture = ExtResource("3_x05on")
+
+[node name="chaine11" type="Sprite2D" parent="chain"]
+position = Vector2(0, -38)
+texture = ExtResource("3_x05on")
+
+[node name="chaine12" type="Sprite2D" parent="chain"]
+position = Vector2(0, -42)
+texture = ExtResource("3_x05on")
+
+[node name="chaine13" type="Sprite2D" parent="chain"]
+position = Vector2(0, -46)
+texture = ExtResource("3_x05on")
+
+[node name="chaine14" type="Sprite2D" parent="chain"]
+position = Vector2(0, -50)
+texture = ExtResource("3_x05on")
+
+[node name="chaine15" type="Sprite2D" parent="chain"]
+position = Vector2(0, -54)
+texture = ExtResource("3_x05on")
+
+[node name="chaine16" type="Sprite2D" parent="chain"]
+position = Vector2(0, -57)
+texture = ExtResource("3_x05on")
+
+[node name="chaine17" type="Sprite2D" parent="chain"]
+position = Vector2(0, -61)
+texture = ExtResource("3_x05on")
+
+[node name="chaine18" type="Sprite2D" parent="chain"]
+position = Vector2(0, -65)
+texture = ExtResource("3_x05on")
+
+[node name="chaine19" type="Sprite2D" parent="chain"]
+position = Vector2(0, -69)
+texture = ExtResource("3_x05on")
+
+[node name="chaine20" type="Sprite2D" parent="chain"]
+position = Vector2(0, -73)
+texture = ExtResource("3_x05on")
+
+[node name="chaine21" type="Sprite2D" parent="chain"]
+position = Vector2(0, -77)
+texture = ExtResource("3_x05on")
+
+[node name="chaine22" type="Sprite2D" parent="chain"]
+position = Vector2(0, -80)
+texture = ExtResource("3_x05on")
+
+[node name="chaine23" type="Sprite2D" parent="chain"]
+position = Vector2(0, -84)
+texture = ExtResource("3_x05on")
+
+[node name="chaine24" type="Sprite2D" parent="chain"]
+position = Vector2(0, -88)
+texture = ExtResource("3_x05on")
+
+[node name="saw" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="saw"]
+texture_filter = 1
+sprite_frames = ExtResource("2_6tokq")
+animation = &"Saw_ON"
+autoplay = "Saw_ON"
+frame = 5
+frame_progress = 0.63984
+speed_scale = 6.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="saw"]
+shape = SubResource("CircleShape2D_2x176")
+debug_color = Color(0.992157, 0, 0.25098, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="saw"]
+root_node = NodePath("../AnimatedSprite2D")
+autoplay = "saw_motion"
+libraries = {
+"": SubResource("AnimationLibrary_k15ai")
+}
+
+[connection signal="body_entered" from="saw" to="." method="_on_saw_body_entered"]
